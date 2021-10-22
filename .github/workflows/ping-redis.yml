@@ -1,0 +1,20 @@
+name: Ping a redis service container
+on:
+  workflow_dispatch:
+
+jobs:
+  redis-service-container-ping:
+    runs-on: self-hosted
+    services:
+      redis:
+        image: redis
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+    steps:
+    - name: Ping Redis
+      run: '(printf "PING\r\n";) | nc -q 1 localhost 6379'
