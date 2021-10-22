@@ -14,13 +14,11 @@ variable "aws_sm_secret_name" {
 }
 
 variable "github_username" {
-  type    = string
-  default = "gscho"
+  type = string
 }
 
 variable "github_repo" {
-  type    = string
-  default = "my-test-repo"
+  type = string
 }
 
 packer {
@@ -33,7 +31,7 @@ packer {
 }
 
 source "amazon-ebs" "ubuntu-ephemeral" {
-  ami_name      = "github-ephemeral-runner-ubuntu-2004"
+  ami_name      = "gh-ephemeral-runner-ubuntu-2004-${var.github_username}-${var.github_repo}"
   instance_type = "t2.micro"
   region        = var.aws_region
   source_ami_filter {
