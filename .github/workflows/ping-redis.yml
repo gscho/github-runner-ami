@@ -4,7 +4,7 @@ on:
 
 jobs:
   redis-service-container-ping:
-    runs-on: [self-hosted, "config:github-runner-ami"]
+    runs-on: [self-hosted, "config:test", ephemeral]
     services:
       redis:
         image: redis
